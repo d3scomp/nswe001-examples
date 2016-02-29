@@ -21,6 +21,18 @@ LED redLed(redLedProps);
 LED blueLed(blueLedProps);
 LED orangeLed(orangeLedProps);
 
+PulseLED greenPulseLed(greenLed, 10);
+
+Button::Properties userButtonProps {
+	GPIOA, GPIO_Pin_0, RCC_AHB1Periph_GPIOA, EXTI_Line0, EXTI_PortSourceGPIOA, EXTI_PinSource0, EXTI0_IRQn
+};
+Button infoButton(userButtonProps);
+
+void handleInfoButtonInterrupt(void*) {
+	greenPulseLed.pulse();
+}
+
+
 extern void sysTickHookMain() 
 {
 	static int counter = 0;
@@ -49,14 +61,23 @@ int main(void)
 	RCC_GetClocksFreq(&RCC_Clocks);
 	SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
 
+	infoButton.setPriority(2,0);
+
 	greenLed.init();
 	redLed.init();
 	blueLed.init();
 	orangeLed.init();
+	
+	greenPulseLed.init();
+	
+	infoButton.setPressedListener(handleInfoButtonInterrupt, nullptr);
+	infoButton.init();
 
 
 	NVIC_SystemLPConfig(NVIC_LP_SLEEPONEXIT, ENABLE); // This ..
 	while (1) {
+		// The following puts the processor to sleep and wakes it up only for handling interrupts (and then puts it to sleep again).
+		// As a consequence, it never wakes up here.
 		__WFI(); // ... and this has to be commented out when debugging.
 	}
 }

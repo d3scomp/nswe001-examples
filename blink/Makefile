@@ -41,6 +41,7 @@ SRC+=syscalls.c
 SRC+=main.cpp
 SRC+=hooks.cpp
 SRC+=LED.cpp
+SRC+=Button.cpp
 
 # Standard Peripheral Source Files
 SRC+=stm32f4xx_syscfg.c
@@ -134,7 +135,7 @@ openocd:
 	openocd -f board/stm32f4discovery.cfg
 
 flash: all
-	openocd -f board/stm32f4discovery.cfg -c "program $(BIN_DIR)/$(TARGET).elf verify reset"
+	openocd -f board/stm32f4discovery.cfg -c "program $(BIN_DIR)/$(TARGET).elf verify reset; exit"
 
 
 

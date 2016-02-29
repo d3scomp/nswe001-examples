@@ -11,12 +11,15 @@
 #include "stm32f4xx.h"
 
 #include "LED.h"
+#include "Button.h"
 
 extern LED greenLed;
 extern LED redLed;
 extern LED orangeLed;
 extern LED blueLed;
 extern PulseLED greenPulseLed;
+
+extern Button infoButton;
 
 extern void sysTickHookMain();
 

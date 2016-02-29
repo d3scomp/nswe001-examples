@@ -6,6 +6,11 @@ void SysTick_Handler(void) {
 	sysTickHookMain();
 }
 
+void EXTI0_IRQHandler(void) {
+	infoButton.pressedInterruptHandler();
+}
+
+
 #ifdef  USE_FULL_ASSERT
 
 /**
