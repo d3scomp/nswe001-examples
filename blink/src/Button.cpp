@@ -6,6 +6,8 @@
  */
 
 #include "Button.h"
+#include "stm32f4xx_rcc.h"
+#include "stm32f4xx_conf.h"
 
 Button::Button(Properties& initProps) : props(initProps) {
 }

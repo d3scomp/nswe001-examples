@@ -130,10 +130,6 @@ clean:
 	@rm -f $(BIN_DIR)/$(TARGET).bin
 	@rm -f $(BIN_DIR)/$(TARGET).map
 
-openocd:
-	#openocd -f interface/stlink-v2.cfg -f target/stm32f4x_stlink.cfg
-	openocd -f board/stm32f4discovery.cfg
-
 flash: all
 	openocd -f board/stm32f4discovery.cfg -c "program $(BIN_DIR)/$(TARGET).elf verify reset; exit"
 

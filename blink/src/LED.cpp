@@ -6,6 +6,7 @@
  */
 
 #include "LED.h"
+#include "stm32f4xx_conf.h"
 
 LED::LED(Properties& initProps) : props(initProps) {
 }
