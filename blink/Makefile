@@ -131,7 +131,7 @@ clean:
 	@rm -f $(BIN_DIR)/$(TARGET).map
 
 flash: all
-	openocd -f board/stm32f4discovery.cfg -c "program $(BIN_DIR)/$(TARGET).elf verify reset; exit"
+	openocd -s $(ERS_ROOT)/../openocd/scripts -f board/stm32f4discovery.cfg -c "program $(BIN_DIR)/$(TARGET).elf verify reset; exit"
 
 
 

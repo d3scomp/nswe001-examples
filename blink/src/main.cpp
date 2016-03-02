@@ -78,7 +78,7 @@ int main(void)
 	infoButton.setPressedListener(handleInfoButtonInterrupt, nullptr);
 	infoButton.init();
 
-	printf("Started. ");
+	printf("Started.\n");
 
 
 	NVIC_SystemLPConfig(NVIC_LP_SLEEPONEXIT, ENABLE); // This ..
