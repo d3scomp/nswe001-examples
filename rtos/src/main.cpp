@@ -77,12 +77,6 @@ int main(void)
 	} else {
 		printf("System Error!\n");
 	}
-
-	NVIC_SystemLPConfig(NVIC_LP_SLEEPONEXIT, ENABLE); // This ..
-	while (1) {
-		__WFI(); // ... and this has to be commented out when debugging.
-		mainCycles++; // This is to measure how many times we wake up from WFI. In fact, we should never wake up.
-	}
 }
 
 
